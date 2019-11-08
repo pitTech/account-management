@@ -1,6 +1,12 @@
 <template>
   <div id="app">
-    <Formcreate/>
+    <b-navbar toggleable="lg" type="dark" variant="info">
+        <b-navbar-brand href="#">Account Management</b-navbar-brand>
+
+        </b-navbar>
+   
+    <Create @add-text="addText1"/>
+    <Tablelist v-bind:items="items"/>
 
    
   </div>
@@ -8,11 +14,18 @@
 </template>
 
 <script>
-import Formcreate from './components/Formcreate'
+
+import Create from './components/Create'
+import Tablelist from './components/Tablelist'
 export default {
   name: 'app',
   components:{
-    Formcreate
+    Create,Tablelist
+  },
+  methods:{
+    addText1(text1){
+      this.items.push(text1);
+    }
   }
 }
 </script>

@@ -1,25 +1,18 @@
 <template>
     <div id="table">
-        <b-table striped hover :items="items"  >
-            <Tableitem/>
-        </b-table>
+        
+            <Tableitem v-bind:key="i" v-for="(item,i) in items" v-bind:item="item" v-bind:index="i"/>
     </div>
 </template>
 
 <script>
 import Tableitem from './Tableitem'
     export default {
+        props:'items',
         name:"table",
-         data() {
-      return {
-        items: [
-          { first_name: 'Dickerson', last_name: 'Macdonald', age: 40, Birtday:'11/08/2019', gender:'Male'  },
-        ]
-      }
-    },
-    components:{
-        Tableitem
-    }
+        components:{
+            Tableitem
+                }
     }
 </script>
 

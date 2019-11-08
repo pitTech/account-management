@@ -1,20 +1,11 @@
 <template>
     <div>   
-        
+            <form @submit.prevent="onSubmit">
             Firstname
-            <b-form-input v-model="text1" placeholder="First Name"></b-form-input>
-            Lastname
-            <b-form-input v-model="text2" placeholder="Last Name"></b-form-input>
-            Age
-            <b-form-input type="number" v-model="text3" placeholder="Age"></b-form-input>
-            Birtday
-            <b-form-input  type="date" v-model="text1" placeholder="Email"></b-form-input>
-            <br>
-            <b-form-select v-model="selected" :options="options"></b-form-select>
-            <br>
+            <b-form-input type="text" v-model="text1" placeholder="First Name"></b-form-input>
             <br>
             <b-button variant="danger" type="submit">Add</b-button>
-            
+            </form>
     </div>
 </template>
 
@@ -23,6 +14,7 @@
     export default {
         data(){
             return{
+                texr1:'',
                 selected: null,
                 options: [
                 { value: null, text: 'Gender' },
@@ -31,9 +23,22 @@
                 
                 ]
             }
-        }
+        },
+        methods:{
+            onSubmit(){
+                if(this.text1.trim()){
+                    const newText1 ={
+                        id: Date.now(),
+                        text1:this.text1,
+                        completed: false
+                    }
+                    this.$$emit('add-text',newText1)
+                    this.text1=""
        
     }
+            }
+        }
+    }  
 </script>
 
 <style lang="scss" scoped>
